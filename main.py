@@ -45,3 +45,5 @@ print('----------------------------')
 
 final = get_total_cost(filter_books)
 print(final)
+
+input("Нажмите Enter, чтобы выйти...")
