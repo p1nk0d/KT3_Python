@@ -1,4 +1,8 @@
 import csv
+import os
+
+# Путь к файлу относительно расположения скрипта
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def parse_row(row):
     return [row[0], row[1], row[2], int(row[3]), float(row[4])]
@@ -13,9 +17,9 @@ def filtered_book(books, filter_name):
     return list(
         map(
             lambda book:[
-              book[0],                              # isbn
-              f"{book[1]}, {book[2]}",              # title, author
-              book[3],                              # quantity
+              book[0],
+              f"{book[1]}, {book[2]}",
+              book[3],
               book[4]
             ],
             filter(
@@ -25,15 +29,13 @@ def filtered_book(books, filter_name):
         )
     )
 
-def get_total_cost (filtered_books):
-  return tuple(list(map(
-      lambda book: (book[0], book[2] * book[3]),
-      filtered_books
-    )
-  )
-)
+def get_total_cost(filtered_books):
+    return tuple(list(map(
+        lambda book: (book[0], book[2] * book[3]),
+        filtered_books
+    )))
 
-books = get_books("books.csv")
+books = get_books(os.path.join(BASE_DIR, "books.csv"))
 print(books)
 
 print('----------------------------')
